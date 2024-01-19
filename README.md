@@ -1,2 +1,2 @@
 # PregnApp API
- This is API for PregnApp application.
+ I built API for PregnApp application.
