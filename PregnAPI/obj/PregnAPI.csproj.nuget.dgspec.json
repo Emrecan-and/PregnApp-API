@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\PregnAPI.csproj": {}
+    "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\PregnAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\PregnAPI.csproj": {
+    "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\PregnAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\PregnAPI.csproj",
+        "projectUniqueName": "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\PregnAPI.csproj",
         "projectName": "PregnAPI",
-        "projectPath": "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\PregnAPI.csproj",
+        "projectPath": "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\PregnAPI.csproj",
         "packagesPath": "C:\\Users\\EMRECAN ERKUŞ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\obj\\",
+        "outputPath": "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\EMRECAN ERKUŞ\\AppData\\Roaming\\NuGet\\NuGet.Config",

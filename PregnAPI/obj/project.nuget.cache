@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CIwGadxToFOTfsMociw9qw8tlfTAy5OPL9AI9UMPp2zSMRaa/CfIp9dHVLBKR6fxvYyrYBHxECWyToGVzHvDCw==",
+  "dgSpecHash": "oHfY92TxvYDxoqoocr67x2a28G/AuPy95FlGQipiIG9QqbgbIGvJm1kShYIFz7j5Dg1PIZo+e159wBOczjpMow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\EMRECAN ERKUŞ\\Desktop\\PregnAPI\\PregnAPI.csproj",
+  "projectFilePath": "C:\\Users\\EMRECAN ERKUŞ\\Documents\\GitHub\\PregnApp-API\\PregnAPI\\PregnAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EMRECAN ERKUŞ\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\EMRECAN ERKUŞ\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
