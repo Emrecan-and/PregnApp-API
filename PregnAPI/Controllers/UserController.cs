@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.VisualBasic;
 using PregnAPI.DTO;
 using PregnAPI.Models;
 
@@ -26,13 +25,13 @@ namespace PregnAPI.Controllers{
      
       
       [HttpPost("login")]
-      public async Task<IActionResult> Login(string mail,string şifre){    
-        if(await _context.Users.FirstOrDefaultAsync(o=>o.UserMail==mail)==null){
+      public async Task<IActionResult> Login(Login login){    
+        if(await _context.Users.FirstOrDefaultAsync(o=>o.UserMail==login.Email)==null){
              var errorModel = new ErrorModel(404,"Hatalı mail adresi");
              return NotFound(errorModel);
         }
-         string pass=PasswordHasher.HashPassword(şifre);
-         var user=await _context.Users.Where(vt=>vt.UserMail==mail&&vt.UserPassword==pass).Select(p=>UserToUserDTO(p)).ToListAsync();
+         string pass=PasswordHasher.HashPassword(login.Şifre);
+         var user=await _context.Users.Where(vt=>vt.UserMail==login.Email&&vt.UserPassword==pass).Select(p=>UserToUserDTO(p)).ToListAsync();
          if(user.Count==0){
                var errorModel=new ErrorModel(404,"Hatalı şifre");
                return NotFound(errorModel);
@@ -57,12 +56,12 @@ namespace PregnAPI.Controllers{
         }
       }
       
-      [HttpPut("{mail}")]
-      public async Task<IActionResult> UpdateUserInformation(string mail,UserDTO userDTO){
-          if(mail==null || userDTO==null){
+      [HttpPut("UpdateUser")]
+      public async Task<IActionResult> UpdateUserInformation(UserDTO userDTO){
+          if(userDTO==null){
             BadRequest();
           }
-          var kullanıcı=await _context.Users.FirstOrDefaultAsync(o=>o.UserMail==mail);
+          var kullanıcı=await _context.Users.FirstOrDefaultAsync(o=>o.UserMail==userDTO.UserMail);
           if(kullanıcı==null){
             var errorModel=new ErrorModel(404,"Böyle bir mail yok");
             return NotFound(errorModel);
@@ -127,35 +126,7 @@ namespace PregnAPI.Controllers{
 
          }
          
-      }
-
-      [HttpPost("WeightChecker")]
-      public async Task<IActionResult> SendWeight(Weight weight){
-         if(weight==null){
-          var errorModel=new ErrorModel(404,"Weight objesi boş!");
-           return NotFound(errorModel);
-         }else{
-          var kilo=await _context.Weights.OrderByDescending(vt=>vt.WeightDate).FirstOrDefaultAsync(vt=>vt.UserMail==weight.UserMail);
-          var user=await _context.Users.FirstOrDefaultAsync(vt=>vt.UserMail==weight.UserMail);
-          if(kilo==null){
-            if(user==null){
-              var errorModel=new ErrorModel(404,"Girdiğiniz mailde kayıtlı kullanıcı bulunmadı!");
-              return NotFound(errorModel);
-            }else{
-               var initialWeight=new Weight();
-               initialWeight.WeightHour=user.ReglDate; initialWeight.WeightDate=user.ReglDate; initialWeight.WeightDegree=0;
-               initialWeight.UserWeight=user.UserWeight; initialWeight.UserMail=user.UserMail; initialWeight.Difference=0;
-               _context.Weights.Add(initialWeight);
-               _context.Weights.Add(weight);
-                try{
-            await _context.SaveChangesAsync();}catch(Exception){
-               return NotFound();
-            }  return Created("",weight);
-            }
-          }
-            return Created("",weight);
-         }
-      }
+      } 
       private static UserDTO UserToUserDTO(User user){
          return new UserDTO{
            UserMail=user.UserMail,

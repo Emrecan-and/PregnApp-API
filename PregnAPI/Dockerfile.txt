@@ -1,0 +1,23 @@
+# Base image
+FROM mcr.microsoft.com/dotnet/core/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+# Build image
+FROM mcr.microsoft.com/dotnet/core/sdk:7.0 AS build
+WORKDIR /src
+COPY ["PregnAPI.csproj", "./"]
+RUN dotnet restore "./PregnAPI.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "PregnAPI.csproj" -c Release -o /app/build
+
+# Publish
+FROM build AS publish
+RUN dotnet publish "PregnAPI.csproj" -c Release -o /app/publish
+
+# Final image
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "PregnAPI.dll"]

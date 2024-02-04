@@ -96,31 +96,6 @@ namespace PregnAPI.Migrations
 
                     b.ToTable("Users");
                 });
-
-            modelBuilder.Entity("PregnAPI.Models.Weight", b =>
-                {
-                    b.Property<string>("UserMail")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Difference")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserWeight")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("WeightDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("WeightDegree")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("WeightHour")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserMail");
-
-                    b.ToTable("Weights");
-                });
 #pragma warning restore 612, 618
         }
     }
