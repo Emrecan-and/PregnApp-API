@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualBasic;
 using PregnAPI.DTO;
 using PregnAPI.Models;
 
@@ -126,7 +127,35 @@ namespace PregnAPI.Controllers{
 
          }
          
-      } 
+      }
+
+      [HttpPost("WeightChecker")]
+      public async Task<IActionResult> SendWeight(Weight weight){
+         if(weight==null){
+          var errorModel=new ErrorModel(404,"Weight objesi boş!");
+           return NotFound(errorModel);
+         }else{
+          var kilo=await _context.Weights.OrderByDescending(vt=>vt.WeightDate).FirstOrDefaultAsync(vt=>vt.UserMail==weight.UserMail);
+          var user=await _context.Users.FirstOrDefaultAsync(vt=>vt.UserMail==weight.UserMail);
+          if(kilo==null){
+            if(user==null){
+              var errorModel=new ErrorModel(404,"Girdiğiniz mailde kayıtlı kullanıcı bulunmadı!");
+              return NotFound(errorModel);
+            }else{
+               var initialWeight=new Weight();
+               initialWeight.WeightHour=user.ReglDate; initialWeight.WeightDate=user.ReglDate; initialWeight.WeightDegree=0;
+               initialWeight.UserWeight=user.UserWeight; initialWeight.UserMail=user.UserMail; initialWeight.Difference=0;
+               _context.Weights.Add(initialWeight);
+               _context.Weights.Add(weight);
+                try{
+            await _context.SaveChangesAsync();}catch(Exception){
+               return NotFound();
+            }  return Created("",weight);
+            }
+          }
+            return Created("",weight);
+         }
+      }
       private static UserDTO UserToUserDTO(User user){
          return new UserDTO{
            UserMail=user.UserMail,

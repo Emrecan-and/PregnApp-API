@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PregnAPI.Models;
 
@@ -11,9 +12,11 @@ using PregnAPI.Models;
 namespace PregnAPI.Migrations
 {
     [DbContext(typeof(PregnAppContext))]
-    partial class PregnAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240204144918_Weight")]
+    partial class Weight
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

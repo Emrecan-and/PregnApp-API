@@ -10,6 +10,8 @@ namespace PregnAPI.Models{
         public DbSet<Baby> Babies{get; set;}
 
         public DbSet<Article> Articles{get; set;}
+
+        public DbSet<Weight>Weights{get; set;}
     }
      
 }
